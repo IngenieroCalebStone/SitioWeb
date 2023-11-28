@@ -65,3 +65,13 @@ import Footer from '../componentes/footer.astro'
 </body>
 </html>
 
+
+
+
+
+
+
+
+
+
+---------------------------------mdx------------------------------------------

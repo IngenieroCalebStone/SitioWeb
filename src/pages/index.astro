@@ -3,49 +3,40 @@ import Layout from '../layouts/Layout.astro'
 ---
 
 <Layout>
-	<div slot="article" class="w-full flex justify-center dark:bg-violet-200 dark:text-black mt-5 mb-5">
-		<div ="perfil-home-cvu">
-			<img src="/public/IMGMEM/7.jpg" alt="foto de perfil"/>
-			<h3>Luis Octavio Neri Velázquez</h3>
-			
+	<div slot="article" class="w-full flex justify-center dark:bg-blue-200 dark:text-black mt-5 mb-5">
+		<div class="perfil-home-cvu">
+			<img src="/public/caleb.jpg" alt="foto de perfil"/>
+					<fieldset>
+						<legend>Domicilio</legend>
+						<ul>
+							<li> <span> Calle:</span> Loma de Albacete </li>
+							<li> <span> Localidad:</span> Tlajomulco de Zúñiga, Jalisco. </li>
+							<li> <span> CP.</span> 45650 </li>
+							<li> <span> Telefono:</span> 33 3471 3901 </li>
+						</ul>
+					</fieldset>
+			   
+					<fieldset>
+						<legend>Datos Generales</legend>
+						<ul>
+							<li> <span> Fecha de nacimiento:</span> 16/04/2001 </li>
+							<li> <span> CURP:</span> HUGC010416HJCZRLA4 </li>
+							<li> <span> Cedula licenciatura:</span> N/A </li>
+							<li> <span> email:</span> l20940358@tlajomulco.tecnm.mx </li>
+						</ul>   
+					</fieldset>
+			  
 			<fieldset>
-				<legend class="w-full flex justify-center">Domicilio</legend>
+				<legend>Formacion académica</legend>
 				<ul>
-					<li> <span> Calle:</span> Flaviano Ramos #173 </li>
-					<li> <span> Localidad:</span> Tlajomulco, Jalisco. </li>
-					<li> <span> CP.</span> 45640 </li>
-					<li> <span> Telefono:</span> 3312688500 </li>
-				</ul>
-			</fieldset>
-		   
-			<fieldset>
-				<legend class="w-full flex justify-center">Datos Generales</legend>
-				<ul>
-					<li> <span> Fecha de nacimiento:</span> 16/12/2002 </li>
-					<li> <span> CURP:</span> NEVL021216HJCRLSA5 </li>
-					<li> <span> Cedula licenciatura:</span> 20940376 </li>
-					<li> <span> email:</span> l20940376@tlajomulco.tecnm.mx </li>
-				</ul>   
-			</fieldset>
-		  
-			<fieldset>
-				<legend class="w-full flex justify-center">Formacion académica</legend>
-				<ul>
-					<li> <span>Cedula profesional:</span> 20940376  </li>
-					<li> <span>Licenciatura en Ingenieria en sistemas computacionales:</span> Intituto tecnologico de Tlajomulco</li>
+					<li> <span>Ingeniería en Sistemas:</span> Tecnológico de Tlajomulco de Zúñiga  </li>
 				</ul>
 			</fieldset>
 			<fieldset>
-				<legend class="w-full flex justify-center">Experiencia laboral</legend>
-				<ul>
-					<li> <span>NULL </span> NULL  </li>
-				</ul>
-			</fieldset>
-			<fieldset>
-				<legend class="w-full flex justify-center">Idiomas</legend>
+				<legend>Idiomas</legend>
 				<ul>
 					<li> <span>Español:</span> Nativo  </li>
-					<li> <span>Ingles:</span> 30%</li>
+					<li> <span>Ingles:</span> 20%</li>
 				</ul>
 			</fieldset>
 		</div>
@@ -54,10 +45,54 @@ import Layout from '../layouts/Layout.astro'
 </Layout>
 
 <style>
-	img {
-		width: 150px;
-  		height: 175px;
-  		margin: 5px;
- 		border: 5px solid rgb(32, 30, 32); 
-	}
+	body{
+    
+    width: 980px;
+    margin: 0px auto;
+}
+
+	.perfil-home-cvu{
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgb(0, 5, 6);
+    padding: 12px;
+    width: 80%; 
+    margin: 100px auto -142px;
+    border-radius: 20px;
+    margin-bottom: 130px;
+    background-image: url(https://img3.wallspic.com/previews/1/2/2/4/4/144221/144221-minimalism-art-illustration-blue-digital_art-x750.jpg);
+    background-size: 50rem;
+	text-align: center;
+}
+.perfil-home-cvu fieldset{
+    
+    display: grid;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    width: 50%;
+}
+.perfil-home-cvu legend
+{  background-color:  rgb(7, 48, 63);
+   border-radius: 6px;
+   font-weight: bold;
+   color: white;
+}
+.perfil-home-cvu fieldset:hover{
+    background-color: rgb(110, 201, 253);
+    color: white;
+    transform: scale(1.20, 1.20);
+    font-weight : bold
+}
+
+.perfil-home-cvu img{
+    width: 150px;
+    height: 150px;
+    margin-left: 80px;
+    border-radius: 8px;
+    margin-top: 50px;
+}
+.perfil-home-cvu img:hover{
+    transform: scale(1.70, 1.70);
+}
 </style>

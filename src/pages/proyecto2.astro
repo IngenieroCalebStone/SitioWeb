@@ -1,0 +1,303 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <div class="Juego">
+    <div class="tema">
+      <h3>Tema: Frutas</h3>
+      <p>Tu palabra tiene <span id="Longitud">7</span> caracteres</p>
+    </div>
+    <div id="palabraOculta"></div>
+    <div>
+      <img src="/public/0.jpg" alt="Ahorcado" id="ahorcadoImg" class="im" />
+    </div>
+    <div class="jugando">
+      <div class="container">
+        <input
+          required=""
+          type="text"
+          name="text"
+          class="input"
+          id="ingresarLetra"
+        />
+        <label class="label" id="escribir">Escribe una letra</label>
+      </div>
+      <button id="btnBuscar" class="buscar">Buscar</button>
+    </div>
+    <p id="resultado"></p>
+    <button class="reinicio" id="reiniciarBtn">Reiniciar Juego</button>
+  </div>
+</Layout>
+
+<style>
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .Juego {
+    width: 550px;
+    height: 550px;
+    background-color: rgba(211, 84, 84, 0.4);
+    display: grid;
+    grid-template-columns: repeat(1, 140px);
+    gap: 15px;
+  }
+
+  .tema {
+    display: grid;
+    grid-template-columns: repeat(2, 180px);
+  }
+
+  .jugando {
+    display: grid;
+    grid-template-columns: repeat(2, 30fr);
+    padding-top: 20px;
+    gap: 15px;
+  }
+
+  .buscar {
+    padding-left: 40px;
+  }
+
+  .im {
+    width: 300px;
+    height: 300px;
+    border-radius: 10%;
+  }
+
+  h2 {
+    text-align: center;
+  }
+
+  #logo-header {
+    float: left;
+    border: 20px solid rgb(201, 121, 121);
+    background-color: rgb(201, 121, 121);
+    text-decoration: none;
+    border-radius: 70px;
+  }
+
+  nav {
+    background-color: rgb(201, 121, 121);
+    padding-left: 4px;
+    height: 30px;
+    border-radius: 50px;
+  }
+
+  nav ul li {
+    display: inline;
+    font-size: larger;
+    margin-top: 20px;
+    padding: 0px 10px 5px 10px;
+    border-right: 1px solid rgb(255, 255, 255);
+  }
+  nav ul li a {
+    color: rgb(6, 6, 6);
+    text-decoration: none;
+    padding: 5px 10px 15px 10px;
+  }
+
+  footer {
+    position: fixed;
+    bottom: 0;
+  }
+  footer > p {
+    color: rgb(215, 36, 36);
+    text-align: center;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    position: relative;
+    color: rgb(255, 5, 55);
+  }
+
+  .container .label {
+    font-size: 15px;
+    padding-left: 10px;
+    position: absolute;
+    top: 13px;
+    transition: 0.3s;
+    pointer-events: none;
+  }
+
+  .input {
+    width: 200px;
+    height: 40px;
+    border: none;
+    outline: none;
+    padding: 0px 7px;
+    border-radius: 6px;
+    color: #fff9f9;
+    font-size: 15px;
+    background-color: transparent;
+    box-shadow:
+      3px 3px 10px rgb(129, 5, 5),
+      -1px -1px 6px rgba(211, 84, 84, 0.4);
+  }
+
+  .input:focus {
+    border: 2px solid transparent;
+    color: #000000;
+    box-shadow:
+      3px 3px 10px rgb(202, 0, 0),
+      -1px -1px 6px rgba(255, 50, 50, 0.4),
+      inset 3px 3px 10px rgb(190, 0, 0),
+      inset -1px -1px 6px rgba(255, 52, 52, 0.4);
+  }
+
+  .container .input:valid ~ .label,
+  .container .input:focus ~ .label {
+    transition: 0.3s;
+    padding-left: 2px;
+    transform: translateY(-35px);
+  }
+
+  .container .input:valid,
+  .container .input:focus {
+    box-shadow:
+      3px 3px 10px rgb(202, 0, 0),
+      -1px -1px 6px rgba(255, 50, 50, 0.4),
+      inset 3px 3px 10px rgb(190, 0, 0),
+      inset -1px -1px 6px rgba(255, 52, 52, 0.4);
+  }
+
+  /* Boton Buscar */
+  .buscar {
+    padding: 10px 20px;
+    border: none;
+    font-size: 17px;
+    color: #fff;
+    border-radius: 7px;
+    letter-spacing: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: 0.5s;
+    transition-property: box-shadow;
+  }
+
+  .buscar {
+    background: rgb(255, 0, 64);
+    box-shadow: 0 0 25px rgb(255, 0, 64);
+  }
+
+  .buscar:hover {
+    box-shadow:
+      0 0 5px rgb(255, 0, 64),
+      0 0 25px rgb(255, 0, 64),
+      0 0 50px rgb(255, 0, 64),
+      0 0 100px rgb(255, 0, 64);
+  }
+
+  /*Boton reinicio*/
+  .reinicio {
+    padding: 10px 14px;
+    border: none;
+    font-size: 17px;
+    color: #fff;
+    border-radius: 7px;
+    letter-spacing: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: 0.5s;
+    transition-property: box-shadow;
+    background: rgb(255, 0, 64);
+    box-shadow: 0 0 25px rgb(255, 0, 64);
+  }
+
+  .reinicio:hover {
+    box-shadow:
+      0 0 5px rgb(255, 0, 64),
+      0 0 25px rgb(255, 0, 64),
+      0 0 50px rgb(255, 0, 64),
+      0 0 100px rgb(255, 0, 64);
+  }
+</style>
+
+<script lang="js">
+  const palabras = ["manzana", "banana", "pera", "uva", "sandía"];
+
+  // Variables
+  let palBuscar = ""; // Palabra a adivinar
+  let palEncontrada = []; // Palabra adivinada por el jugador
+  let intentos = 0; // Intentos fallidos
+  const cantidadIntentos = 4; // Número máximo de intentos
+
+  // Obtener elementos del DOM
+  const LongitudElement = document.getElementById("Longitud");
+  const palabraOcultaElement = document.getElementById("palabraOculta");
+  const ingresarLetraElement = document.getElementById("ingresarLetra");
+  const btnBuscarElement = document.getElementById("btnBuscar");
+  const ahorcadoImgElement = document.getElementById("ahorcadoImg");
+  const resultadoElement = document.getElementById("resultado");
+  const reiniciarBtnElement = document.getElementById("reiniciarBtn");
+  const escribirElement = document.getElementById("escribir");
+
+  // Escoger una palabra aleatoria de la lista
+  function elegirPal() {
+    const randomIndex = Math.floor(Math.random() * palabras.length);
+    return palabras[randomIndex];
+  }
+
+  // Inicializar el juego
+  function iniciarAhorcado() {
+    palBuscar = elegirPal().toLowerCase();
+    palEncontrada = Array(palBuscar.length).fill("_");
+    intentos = 0;
+    LongitudElement.textContent = palBuscar.length;
+    palabraOcultaElement.textContent = palEncontrada.join(" ");
+    ahorcadoImgElement.src = "/public/0.jpg";
+    reiniciarBtnElement.style.display = "none";
+  }
+
+  // Comprobar si la letra está en la palabra
+  function revisarLetra(letra) {
+    let encontro = false;
+    for (let i = 0; i < palBuscar.length; i++) {
+      if (palBuscar[i] === letra) {
+        palEncontrada[i] = letra;
+        encontro = true;
+      }
+    }
+    if (!encontro) {
+      intentos++;
+      ahorcadoImgElement.src = `/public/${intentos}.jpg`;
+    }
+    palabraOcultaElement.textContent = palEncontrada.join(" ");
+    if (palEncontrada.join("") === palBuscar) {
+      resultadoElement.textContent = "¡	G	A	N	A	S	T	E	!";
+      btnBuscarElement.style.display = "none";
+      ingresarLetraElement.style.display = "none";
+      escribirElement.style.display = "none";
+      reiniciarBtnElement.style.display = "block";
+    } else if (intentos === cantidadIntentos) {
+      resultadoElement.textContent = "¡Perdiste! La palabra era: " + palBuscar;
+      btnBuscarElement.style.display = "none";
+      ingresarLetraElement.style.display = "none";
+      escribirElement.style.display = "none";
+      reiniciarBtnElement.style.display = "block";
+    }
+  }
+
+  // Manejar el botón de búsqueda
+  btnBuscarElement.addEventListener("click", () => {
+    const letra = ingresarLetraElement.value.toLowerCase();
+    if (letra.length === 1 && letra.match(/[a-z]/)) {
+      revisarLetra(letra);
+    }
+    ingresarLetraElement.value = "";
+  });
+
+  // Reiniciar el juego al presionar el botón de reinicio
+  reiniciarBtnElement.addEventListener("click", () => {
+    reiniciarJuego();
+  });
+
+  // Iniciar el juego al cargar la página
+  iniciarAhorcado();
+</script>

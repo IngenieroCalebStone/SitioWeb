@@ -1,0 +1,93 @@
+---
+import Layout from '../layouts/Layout.astro'
+
+---
+
+<Layout>
+	<div slot="article" class="w-full flex justify-center dark:bg-blue-200 dark:text-white mt-5 mb-5">
+		<div id="Mesa" class="Cartas">
+            <img class="im" id="img0" src="/IMGMEM/tapa.jpg" height="140" width="140" onclick="voltear(0);">
+            <img class="im" id="img1" src="/IMGMEM/tapa.jpg" height="140" width="140" onclick="voltear(1);">
+            <img class="im" id="img2" src="/IMGMEM/tapa.jpg" height="140" width="140" onclick="voltear(2);">
+            <img class="im" id="img3" src="/IMGMEM/tapa.jpg" height="140" width="140" onclick="voltear(3);">
+            <img class="im" id="img4" src="/IMGMEM/tapa.jpg" height="140" width="140" onclick="voltear(4);">
+            <img class="im" id="img5" src="/IMGMEM/tapa.jpg" height="140" width="140" onclick="voltear(5);">
+            <img class="im" id="img6" src="/IMGMEM/tapa.jpg" height="140" width="140" onclick="voltear(6);">
+            <img class="im" id="img7" src="/IMGMEM/tapa.jpg" height="140" width="140" onclick="voltear(7);">
+            <img class="im" id="img8" src="/IMGMEM/tapa.jpg" height="140" width="140" onclick="voltear(8);">
+            <img class="im" id="img9" src="/IMGMEM/tapa.jpg" height="140" width="140" onclick="voltear(9);">
+            <img class="im" id="img10" src="/IMGMEM/tapa.jpg" height="140" width="140" onclick="voltear(10);">
+            <img class="im" id="img11" src="/IMGMEM/tapa.jpg" height="140" width="140" onclick="voltear(11);">
+    
+            <button class="reinicio" id="btnReinicio" onclick="reiniciarJuego()">Reiniciar Juego</button>
+        </div>
+	</div>
+</Layout>
+
+<script lang="js">
+	  const img = ["/IMGMEM/image1.jpg", "/IMGMEM/image2.jpg", "/IMGMEM/image3.jpg", "/IMGMEM/image4.jpg", "/IMGMEM/image5.jpg", "/IMGMEM/image6.jpg", "/IMGMEM/image1.jpg", "/IMGMEM/image2.jpg", "/IMGMEM/image3.jpg", "/IMGMEM/image4.jpg", "/IMGMEM/image5.jpg", "/IMGMEM/image6.jpg"];
+  const pos = [0,1,2,3,4,5,6,7,8,9,10,11];
+  let i = pos.length, j, temp;
+  while(--i > 0){
+    j = Math.floor(Math.random() * (i+1));
+    temp = pos[j];
+    pos[j] = pos[i];
+    pos[i] = temp;
+  }
+
+let primeraCarta = null;
+let segundaCarta = null;
+
+function voltear(num) {
+  console.log(pos[num]);
+  console.log(img[pos[num]]);
+  console.log(pos); 
+  document.getElementById("img" + num).src = img[pos[num]];
+
+  if (primeraCarta === null) {
+    primeraCarta = num;
+  } else if (segundaCarta === null && primeraCarta !== num) {
+    segundaCarta = num;
+    
+    // Comparar
+    if (img[pos[primeraCarta]] === img[pos[segundaCarta]]) {
+      // Son iguales
+      primeraCarta = null;
+      segundaCarta = null;
+    } 
+    else {
+      setTimeout(function () {
+        document.getElementById("img" + primeraCarta).src = "/IMGMEM/tapa.jpg";
+        document.getElementById("img" + segundaCarta).src = "/IMGMEM/tapa.jpg";
+        primeraCarta = null;
+        segundaCarta = null;
+      }, 500);
+    }
+    
+  }
+}
+
+function reiniciarJuego(){  
+  location.reload();
+ };
+  </script>
+
+<style>
+	.Cartas {
+    display: grid;
+    grid-template-columns: repeat(4, 140px);
+    gap: 10px;
+}
+
+.im{
+    cursor: pointer;
+    border: 3px solid rgb(72, 36, 215);
+}
+
+.reinicio{
+    text-align: center;
+    color: white;
+    background-color: #020b8b;
+    cursor: pointer;
+}
+  </style>
