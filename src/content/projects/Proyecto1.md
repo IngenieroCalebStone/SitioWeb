@@ -1,5 +1,5 @@
 ---
-title: "Juego de Memorama (23-noviembre-2023)"
+title: "Juego del Ahorcado (23-noviembre-2023)"
 link: "/proyecto1/"
-description: "Este es un juego de memorama con variantes de Spiderman"
+description: "Adivina la palabra antes de que Gwen caiga y muero"
 ---

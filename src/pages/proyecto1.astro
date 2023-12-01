@@ -1,93 +1,296 @@
 ---
-import Layout from '../layouts/Layout.astro'
-
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-	<div slot="article" class="w-full flex justify-center dark:bg-blue-200 dark:text-white mt-5 mb-5">
-		<div id="Mesa" class="Cartas">
-            <img class="im" id="img0" src="/IMGMEM/tapa.jpg" height="140" width="140" onclick="voltear(0);">
-            <img class="im" id="img1" src="/IMGMEM/tapa.jpg" height="140" width="140" onclick="voltear(1);">
-            <img class="im" id="img2" src="/IMGMEM/tapa.jpg" height="140" width="140" onclick="voltear(2);">
-            <img class="im" id="img3" src="/IMGMEM/tapa.jpg" height="140" width="140" onclick="voltear(3);">
-            <img class="im" id="img4" src="/IMGMEM/tapa.jpg" height="140" width="140" onclick="voltear(4);">
-            <img class="im" id="img5" src="/IMGMEM/tapa.jpg" height="140" width="140" onclick="voltear(5);">
-            <img class="im" id="img6" src="/IMGMEM/tapa.jpg" height="140" width="140" onclick="voltear(6);">
-            <img class="im" id="img7" src="/IMGMEM/tapa.jpg" height="140" width="140" onclick="voltear(7);">
-            <img class="im" id="img8" src="/IMGMEM/tapa.jpg" height="140" width="140" onclick="voltear(8);">
-            <img class="im" id="img9" src="/IMGMEM/tapa.jpg" height="140" width="140" onclick="voltear(9);">
-            <img class="im" id="img10" src="/IMGMEM/tapa.jpg" height="140" width="140" onclick="voltear(10);">
-            <img class="im" id="img11" src="/IMGMEM/tapa.jpg" height="140" width="140" onclick="voltear(11);">
-    
-            <button class="reinicio" id="btnReinicio" onclick="reiniciarJuego()">Reiniciar Juego</button>
-        </div>
-	</div>
+  <div slot="article" class="juego">
+    <div class="tema">
+      <h3>Tema: Frutas</h3>
+      <p>Tu palabra tiene <span id="Longitud">7</span> caracteres</p>
+    </div>
+    <div id="palabraOculta"></div>
+    <div>
+      <img src="/public/0.jpg" alt="Ahorcado" id="ahorcadoImg" class="im" />
+    </div>
+    <div class="jugando">
+      <div class="container">
+        <input
+          required=""
+          type="text"
+          name="text"
+          class="input"
+          id="ingresarLetra"
+        />
+        <label class="label" id="escribir">Escribe una letra</label>
+      </div>
+      <button id="btnBuscar" class="buscar">Buscar</button>
+    </div>
+    <p id="resultado"></p>
+    <button class="reinicio" id="reiniciarBtn">Reiniciar Juego</button>
+  </div>
 </Layout>
 
-<script lang="js">
-	  const img = ["/IMGMEM/image1.jpg", "/IMGMEM/image2.jpg", "/IMGMEM/image3.jpg", "/IMGMEM/image4.jpg", "/IMGMEM/image5.jpg", "/IMGMEM/image6.jpg", "/IMGMEM/image1.jpg", "/IMGMEM/image2.jpg", "/IMGMEM/image3.jpg", "/IMGMEM/image4.jpg", "/IMGMEM/image5.jpg", "/IMGMEM/image6.jpg"];
-  const pos = [0,1,2,3,4,5,6,7,8,9,10,11];
-  let i = pos.length, j, temp;
-  while(--i > 0){
-    j = Math.floor(Math.random() * (i+1));
-    temp = pos[j];
-    pos[j] = pos[i];
-    pos[i] = temp;
-  }
-
-let primeraCarta = null;
-let segundaCarta = null;
-
-function voltear(num) {
-  console.log(pos[num]);
-  console.log(img[pos[num]]);
-  console.log(pos); 
-  document.getElementById("img" + num).src = img[pos[num]];
-
-  if (primeraCarta === null) {
-    primeraCarta = num;
-  } else if (segundaCarta === null && primeraCarta !== num) {
-    segundaCarta = num;
-    
-    // Comparar
-    if (img[pos[primeraCarta]] === img[pos[segundaCarta]]) {
-      // Son iguales
-      primeraCarta = null;
-      segundaCarta = null;
-    } 
-    else {
-      setTimeout(function () {
-        document.getElementById("img" + primeraCarta).src = "/IMGMEM/tapa.jpg";
-        document.getElementById("img" + segundaCarta).src = "/IMGMEM/tapa.jpg";
-        primeraCarta = null;
-        segundaCarta = null;
-      }, 500);
-    }
-    
-  }
-}
-
-function reiniciarJuego(){  
-  location.reload();
- };
-  </script>
-
 <style>
-	.Cartas {
+  div {
     display: grid;
-    grid-template-columns: repeat(4, 140px);
-    gap: 10px;
-}
+    justify-content: center;
+    align-items: center;
+  }
 
-.im{
-    cursor: pointer;
-    border: 3px solid rgb(72, 36, 215);
-}
+  .Juego {
+    width: 550px;
+    height: 550px;
+    background-color: rgba(211, 84, 84, 0.4);
+    display: grid;
+    grid-template-columns: repeat(1, 140px);
+    gap: 15px;
+  }
 
-.reinicio{
+  .tema {
+    display: grid;
+    grid-template-columns: repeat(2, 180px);
+  }
+
+  .jugando {
+    display: grid;
+    grid-template-columns: repeat(2, 30fr);
+    padding-top: 20px;
+    gap: 15px;
+  }
+
+  .buscar {
+    padding-left: 40px;
+  }
+
+  .im {
+    width: 300px;
+    height: 300px;
+    border-radius: 10%;
+  }
+
+  h2 {
     text-align: center;
-    color: white;
-    background-color: #020b8b;
-    cursor: pointer;
-}
-  </style>
+  }
+
+  #logo-header {
+    float: left;
+    border: 20px solid rgb(201, 121, 121);
+    background-color: rgb(201, 121, 121);
+    text-decoration: none;
+    border-radius: 70px;
+  }
+
+  nav {
+    background-color: rgb(201, 121, 121);
+    padding-left: 4px;
+    height: 30px;
+    border-radius: 50px;
+  }
+
+  nav ul li {
+    display: inline;
+    font-size: larger;
+    margin-top: 20px;
+    padding: 0px 10px 5px 10px;
+    border-right: 1px solid rgb(255, 255, 255);
+  }
+  nav ul li a {
+    color: rgb(6, 6, 6);
+    text-decoration: none;
+    padding: 5px 10px 15px 10px;
+  }
+
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    align-items: center;
+    position: relative;
+    color: rgb(255, 5, 55);
+  }
+
+  .container .label {
+    font-size: 15px;
+    padding-left: 10px;
+    position: absolute;
+    top: 13px;
+    transition: 0.3s;
+    pointer-events: none;
+  }
+
+  .input {
+    width: 200px;
+    height: 40px;
+    border: none;
+    outline: none;
+    padding: 0px 7px;
+    border-radius: 6px;
+    color: #fff9f9;
+    font-size: 15px;
+    background-color: transparent;
+    box-shadow:
+      3px 3px 10px rgb(129, 5, 5),
+      -1px -1px 6px rgba(211, 84, 84, 0.4);
+  }
+
+  .input:focus {
+    border: 2px solid transparent;
+    color: #000000;
+    box-shadow:
+      3px 3px 10px rgb(202, 0, 0),
+      -1px -1px 6px rgba(255, 50, 50, 0.4),
+      inset 3px 3px 10px rgb(190, 0, 0),
+      inset -1px -1px 6px rgba(255, 52, 52, 0.4);
+  }
+
+  .container .input:valid ~ .label,
+  .container .input:focus ~ .label {
+    transition: 0.3s;
+    padding-left: 2px;
+    transform: translateY(-35px);
+  }
+
+  .container .input:valid,
+  .container .input:focus {
+    box-shadow:
+      3px 3px 10px rgb(202, 0, 0),
+      -1px -1px 6px rgba(255, 50, 50, 0.4),
+      inset 3px 3px 10px rgb(190, 0, 0),
+      inset -1px -1px 6px rgba(255, 52, 52, 0.4);
+  }
+
+  /* Boton Buscar */
+  .buscar {
+    padding: 10px 20px;
+    border: none;
+    font-size: 17px;
+    color: #fff;
+    border-radius: 7px;
+    letter-spacing: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: 0.5s;
+    transition-property: box-shadow;
+  }
+
+  .buscar {
+    background: rgb(255, 0, 64);
+    box-shadow: 0 0 25px rgb(255, 0, 64);
+  }
+
+  .buscar:hover {
+    box-shadow:
+      0 0 5px rgb(255, 0, 64),
+      0 0 25px rgb(255, 0, 64),
+      0 0 50px rgb(255, 0, 64),
+      0 0 100px rgb(255, 0, 64);
+  }
+
+  /*Boton reinicio*/
+  .reinicio {
+    padding: 10px 14px;
+    border: none;
+    font-size: 17px;
+    color: #fff;
+    border-radius: 7px;
+    letter-spacing: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: 0.5s;
+    transition-property: box-shadow;
+    background: rgb(255, 0, 64);
+    box-shadow: 0 0 25px rgb(255, 0, 64);
+  }
+
+  .reinicio:hover {
+    box-shadow:
+      0 0 5px rgb(255, 0, 64),
+      0 0 25px rgb(255, 0, 64),
+      0 0 50px rgb(255, 0, 64),
+      0 0 100px rgb(255, 0, 64);
+  }
+</style>
+
+<script lang="js">
+  const palabras = ["manzana", "banana", "pera", "uva", "sandía"];
+
+  // Variables
+  let palBuscar = ""; // Palabra a adivinar
+  let palEncontrada = []; // Palabra adivinada por el jugador
+  let intentos = 0; // Intentos fallidos
+  const cantidadIntentos = 4; // Número máximo de intentos
+
+  // Obtener elementos del DOM
+  const LongitudElement = document.getElementById("Longitud");
+  const palabraOcultaElement = document.getElementById("palabraOculta");
+  const ingresarLetraElement = document.getElementById("ingresarLetra");
+  const btnBuscarElement = document.getElementById("btnBuscar");
+  const ahorcadoImgElement = document.getElementById("ahorcadoImg");
+  const resultadoElement = document.getElementById("resultado");
+  const reiniciarBtnElement = document.getElementById("reiniciarBtn");
+  const escribirElement = document.getElementById("escribir");
+
+  // Escoger una palabra aleatoria de la lista
+  function elegirPal() {
+    const randomIndex = Math.floor(Math.random() * palabras.length);
+    return palabras[randomIndex];
+  }
+
+  // Inicializar el juego
+  function iniciarAhorcado() {
+    palBuscar = elegirPal().toLowerCase();
+    palEncontrada = Array(palBuscar.length).fill("_");
+    intentos = 0;
+    LongitudElement.textContent = palBuscar.length;
+    palabraOcultaElement.textContent = palEncontrada.join(" ");
+    ahorcadoImgElement.src = "/public/0.jpg";
+    reiniciarBtnElement.style.display = "none";
+  }
+
+  // Comprobar si la letra está en la palabra
+  function revisarLetra(letra) {
+    let encontro = false;
+    for (let i = 0; i < palBuscar.length; i++) {
+      if (palBuscar[i] === letra) {
+        palEncontrada[i] = letra;
+        encontro = true;
+      }
+    }
+    if (!encontro) {
+      intentos++;
+      ahorcadoImgElement.src = `/public/${intentos}.jpg`;
+    }
+    palabraOcultaElement.textContent = palEncontrada.join(" ");
+    if (palEncontrada.join("") === palBuscar) {
+      resultadoElement.textContent = "¡	G	A	N	A	S	T	E	!";
+      btnBuscarElement.style.display = "none";
+      ingresarLetraElement.style.display = "none";
+      escribirElement.style.display = "none";
+      reiniciarBtnElement.style.display = "block";
+    } else if (intentos === cantidadIntentos) {
+      resultadoElement.textContent = "¡Perdiste! La palabra era: " + palBuscar;
+      btnBuscarElement.style.display = "none";
+      ingresarLetraElement.style.display = "none";
+      escribirElement.style.display = "none";
+      reiniciarBtnElement.style.display = "block";
+    }
+  }
+
+  // Manejar el botón de búsqueda
+  btnBuscarElement.addEventListener("click", () => {
+    const letra = ingresarLetraElement.value.toLowerCase();
+    if (letra.length === 1 && letra.match(/[a-z]/)) {
+      revisarLetra(letra);
+    }
+    ingresarLetraElement.value = "";
+  });
+
+  // Reiniciar el juego al presionar el botón de reinicio
+  reiniciarBtnElement.addEventListener("click", () => {
+    reiniciarJuego();
+  });
+
+  // Iniciar el juego al cargar la página
+  iniciarAhorcado();
+</script>

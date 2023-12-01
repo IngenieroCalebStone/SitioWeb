@@ -3,18 +3,21 @@ import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
 ---
 
+
 <!DOCTYPE html>
 <html lang="en" class="bg-blue-200">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CHG</title>
+    <link rel="shortcut icon" href="/public/IT_Tlajo.png" type="image/x-icon">
 </head>
 <body>
     <div id="global" class="min-h-screen">
         <Header/>
         <slot name="article"/>
         <Footer/>
+        
 
     </div>
 </body>
