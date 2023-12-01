@@ -1,8 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
-import Proyecto from '../components/Proyecto.astro';
 import Layout from '../layouts/Layout.astro';
-const proyecto =await getCollection("projects");
+import Proyecto from '../components/Proyecto.astro';
+const proyecto =await getCollection("proyectos");
 ---
 
 <Layout>
