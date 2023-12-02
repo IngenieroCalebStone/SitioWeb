@@ -10,7 +10,7 @@ import Layout from "../layouts/Layout.astro";
     </div>
     <div id="palabraOculta"></div>
     <div>
-      <img src="/public/0.jpg" alt="Ahorcado" id="ahorcadoImg" class="im" />
+      <img src="/img/0.jpg" alt="Ahorcado" id="ahorcadoImg" class="im" />
     </div>
     <div class="jugando">
       <div class="container">
@@ -244,7 +244,7 @@ import Layout from "../layouts/Layout.astro";
     intentos = 0;
     LongitudElement.textContent = palBuscar.length;
     palabraOcultaElement.textContent = palEncontrada.join(" ");
-    ahorcadoImgElement.src = "/public/0.jpg";
+    ahorcadoImgElement.src = "/img/0.jpg";
     reiniciarBtnElement.style.display = "none";
   }
 
@@ -259,7 +259,7 @@ import Layout from "../layouts/Layout.astro";
     }
     if (!encontro) {
       intentos++;
-      ahorcadoImgElement.src = `/public/${intentos}.jpg`;
+      ahorcadoImgElement.src = `/img/${intentos}.jpg`;
     }
     palabraOcultaElement.textContent = palEncontrada.join(" ");
     if (palEncontrada.join("") === palBuscar) {

@@ -5,18 +5,18 @@ import Layout from '../layouts/Layout.astro'
 <Layout>
 	<div slot="article" class="w-full flex justify-center dark:bg-blue-200 dark:text-white mt-5 mb-5">
 		<div id="Mesa" class="Cartas">
-            <img class="im" id="img0" src="/public/tapa.jpg" height="140" width="140" onclick="voltear(0);">
-            <img class="im" id="img1" src="/public/tapa.jpg" height="140" width="140" onclick="voltear(1);">
-            <img class="im" id="img2" src="/public/tapa.jpg" height="140" width="140" onclick="voltear(2);">
-            <img class="im" id="img3" src="/public/tapa.jpg" height="140" width="140" onclick="voltear(3);">
-            <img class="im" id="img4" src="/public/tapa.jpg" height="140" width="140" onclick="voltear(4);">
-            <img class="im" id="img5" src="/public/tapa.jpg" height="140" width="140" onclick="voltear(5);">
-            <img class="im" id="img6" src="/public/tapa.jpg" height="140" width="140" onclick="voltear(6);">
-            <img class="im" id="img7" src="/public/tapa.jpg" height="140" width="140" onclick="voltear(7);">
-            <img class="im" id="img8" src="/public/tapa.jpg" height="140" width="140" onclick="voltear(8);">
-            <img class="im" id="img9" src="/public/tapa.jpg" height="140" width="140" onclick="voltear(9);">
-            <img class="im" id="img10" src="/public/tapa.jpg" height="140" width="140" onclick="voltear(10);">
-            <img class="im" id="img11" src="/public/tapa.jpg" height="140" width="140" onclick="voltear(11);">
+            <img class="im" id="img0" src="/img/tapa.jpg" height="140" width="140" onclick="voltear(0);">
+            <img class="im" id="img1" src="/img/tapa.jpg" height="140" width="140" onclick="voltear(1);">
+            <img class="im" id="img2" src="/img/tapa.jpg" height="140" width="140" onclick="voltear(2);">
+            <img class="im" id="img3" src="/img/tapa.jpg" height="140" width="140" onclick="voltear(3);">
+            <img class="im" id="img4" src="/img/tapa.jpg" height="140" width="140" onclick="voltear(4);">
+            <img class="im" id="img5" src="/img/tapa.jpg" height="140" width="140" onclick="voltear(5);">
+            <img class="im" id="img6" src="/img/tapa.jpg" height="140" width="140" onclick="voltear(6);">
+            <img class="im" id="img7" src="/img/tapa.jpg" height="140" width="140" onclick="voltear(7);">
+            <img class="im" id="img8" src="/img/tapa.jpg" height="140" width="140" onclick="voltear(8);">
+            <img class="im" id="img9" src="/img/tapa.jpg" height="140" width="140" onclick="voltear(9);">
+            <img class="im" id="img10" src="/img/tapa.jpg" height="140" width="140" onclick="voltear(10);">
+            <img class="im" id="img11" src="/img/tapa.jpg" height="140" width="140" onclick="voltear(11);">
     
             <button class="reinicio" id="btnReinicio" onclick="reiniciarJuego()">Reiniciar Juego</button>
         </div>
@@ -24,7 +24,7 @@ import Layout from '../layouts/Layout.astro'
 </Layout>
 
 <script lang="js">
-	  const img = ["/public/image1.jpg", "/public/image2.jpg", "/public/image3.jpg", "/public/image4.jpg", "/public/image5.jpg", "/public/image6.jpg", "/public/image1.jpg", "/public/image2.jpg", "/public/image3.jpg", "/public/image4.jpg", "/public/image5.jpg", "/public/image6.jpg"];
+	  const img = ["/img/image1.jpg", "/img/image2.jpg", "/img/image3.jpg", "/img/image4.jpg", "/img/image5.jpg", "/img/image6.jpg", "/img/image1.jpg", "/img/image2.jpg", "/img/image3.jpg", "/img/image4.jpg", "/img/image5.jpg", "/img/image6.jpg"];
   const pos = [0,1,2,3,4,5,6,7,8,9,10,11];
   let i = pos.length, j, temp;
   while(--i > 0){
@@ -56,8 +56,8 @@ function voltear(num) {
     } 
     else {
       setTimeout(function () {
-        document.getElementById("img" + primeraCarta).src = "/public/tapa.jpg";
-        document.getElementById("img" + segundaCarta).src = "/public/tapa.jpg";
+        document.getElementById("img" + primeraCarta).src = "/img/tapa.jpg";
+        document.getElementById("img" + segundaCarta).src = "/img/tapa.jpg";
         primeraCarta = null;
         segundaCarta = null;
       }, 500);
